@@ -1,10 +1,36 @@
+abstract class PaymentMethod {
+  void pay(double amount);
+}
+
+class CreditCard implements PaymentMethod {
+  @override
+  void pay(double amount) {
+    print("ชำระเงิน $amount บาท ผ่านบัตรเครดิต");
+  }
+}
+
+class PromptPay implements PaymentMethod {
+  @override
+  void pay(double amount) {
+    print("ชำระเงิน $amount บาท ผ่าน PromptPay");
+  }
+}
+
+class CashOnDelivery implements PaymentMethod {
+  @override
+  void pay(double amount) {
+    print("ชำระเงิน $amount บาท แบบเก็บเงินปลายทาง");
+  }
+}
+
 void main() {
-  print("1. เริ่ม");
+  List<PaymentMethod> methods = [
+    CreditCard(),
+    PromptPay(),
+    CashOnDelivery(),
+  ];
 
-  Future.delayed(
-    Duration(seconds: 3),
-    () => print("2. โหลดเสร็จ"),
-  ).then((_) {});
-
-  print("3. จบ");
+  for (var method in methods) {
+    method.pay(999);
+  }
 }

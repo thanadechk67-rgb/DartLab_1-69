@@ -1,10 +1,25 @@
+class Temperature {
+  double _celsius = 0;
+
+  double get celsius => _celsius;
+
+  set celsius(double value) {
+    if (value < -273.15) {
+      print("ไม่สามารถกำหนดอุณหภูมิต่ำกว่าศูนย์สัมบูรณ์ได้");
+    } else {
+      _celsius = value;
+    }
+  }
+
+  double get fahrenheit => (_celsius * 9 / 5) + 32;
+}
+
 void main() {
-  print("1. เริ่ม");
+  Temperature temp = Temperature();
 
-  Future.delayed(
-    Duration(seconds: 3),
-    () => print("2. โหลดเสร็จ"),
-  ).then((_) {});
+  temp.celsius = 25;
+  print("Celsius: ${temp.celsius}");
+  print("Fahrenheit: ${temp.fahrenheit}");
 
-  print("3. จบ");
+  temp.celsius = -300;
 }

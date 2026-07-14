@@ -1,10 +1,41 @@
+class Employee {
+  double calculateSalary() {
+    return 0;
+  }
+}
+
+class FullTimeEmployee extends Employee {
+  double monthlySalary;
+
+  FullTimeEmployee(this.monthlySalary);
+
+  @override
+  double calculateSalary() {
+    return monthlySalary;
+  }
+}
+
+class PartTimeEmployee extends Employee {
+  double hoursWorked;
+  double hourlyRate;
+
+  PartTimeEmployee(this.hoursWorked, this.hourlyRate);
+
+  @override
+  double calculateSalary() {
+    return hoursWorked * hourlyRate;
+  }
+}
+
 void main() {
-  print("1. เริ่ม");
+  List<Employee> employees = [
+    FullTimeEmployee(30000),
+    PartTimeEmployee(80, 150),
+    FullTimeEmployee(45000),
+    PartTimeEmployee(50, 200),
+  ];
 
-  Future.delayed(
-    Duration(seconds: 3),
-    () => print("2. โหลดเสร็จ"),
-  ).then((_) {});
-
-  print("3. จบ");
+  for (var employee in employees) {
+    print("เงินเดือน: ${employee.calculateSalary()} บาท");
+  }
 }

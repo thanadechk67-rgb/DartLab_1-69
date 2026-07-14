@@ -1,10 +1,22 @@
+class Book {
+  String title;
+  String author;
+  double price;
+
+  Book(this.title, this.author, this.price);
+
+  void showDetail() {
+    print("ชื่อหนังสือ: $title");
+    print("ผู้แต่ง: $author");
+    print("ราคา: $price บาท");
+    print("-------------------");
+  }
+}
+
 void main() {
-  print("1. เริ่ม");
+  Book book1 = Book("Flutter for Beginners", "John Smith", 450);
+  Book book2 = Book("Dart Programming", "Jane Doe", 390);
 
-  Future.delayed(
-    Duration(seconds: 3),
-    () => print("2. โหลดเสร็จ"),
-  ).then((_) {});
-
-  print("3. จบ");
+  book1.showDetail();
+  book2.showDetail();
 }

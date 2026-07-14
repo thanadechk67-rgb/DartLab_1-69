@@ -1,10 +1,42 @@
+mixin Loggable {
+  void log(String msg) {
+    print("[${DateTime.now()}] $msg");
+  }
+}
+
+class Stack<T> with Loggable {
+  final List<T> _items = [];
+
+  void push(T item) {
+    _items.add(item);
+    log("Push: $item");
+  }
+
+  T? pop() {
+    if (_items.isEmpty) {
+      log("Stack ว่าง");
+      return null;
+    }
+
+    T item = _items.removeLast();
+    log("Pop: $item");
+    return item;
+  }
+
+  void show() {
+    print(_items);
+  }
+}
+
 void main() {
-  print("1. เริ่ม");
+  Stack<int> stack = Stack<int>();
 
-  Future.delayed(
-    Duration(seconds: 3),
-    () => print("2. โหลดเสร็จ"),
-  ).then((_) {});
+  stack.push(10);
+  stack.push(20);
+  stack.push(30);
 
-  print("3. จบ");
+  stack.show();
+
+  stack.pop();
+  stack.show();
 }
